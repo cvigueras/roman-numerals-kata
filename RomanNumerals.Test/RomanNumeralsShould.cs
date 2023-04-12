@@ -68,5 +68,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("C");
         }
+
+        [Test]
+        public void GetDWhenArabicNumberIs500()
+        {
+            var result = _calculator.GetRomanNumber(500);
+
+            result.Should().Be("D");
+        }
     }
 }
