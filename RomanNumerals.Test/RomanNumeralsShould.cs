@@ -76,5 +76,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("D");
         }
+
+        [Test]
+        public void GetMWhenArabicNumberIs1000()
+        {
+            var result = _calculator.GetRomanNumber(1000);
+
+            result.Should().Be("M");
+        }
     }
 }
