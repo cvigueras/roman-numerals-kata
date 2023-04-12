@@ -35,6 +35,10 @@ namespace RomanNumerals.Test
             {
                 return "I";
             }
+            if (i == 2)
+            {
+                return "II";
+            }
 
             return string.Empty;
         }
