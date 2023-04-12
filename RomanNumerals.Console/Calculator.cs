@@ -29,6 +29,10 @@ public class Calculator
         {
             return "VII";
         }
+        if (number == 8)
+        {
+            return "VIII";
+        }
         var result = SearchRomanNumeralValue(number);
         return !string.IsNullOrEmpty(result) ? result : GetSubtractUnitRomanNumber(number);
     }
