@@ -17,6 +17,14 @@ namespace RomanNumerals.Test
 
             result.Should().Be("I");
         }
+
+        [Test]
+        public void GetIIWhenArabicNumberIs2()
+        {
+            var result = Calculator.GetRomanNumber(2);
+
+            result.Should().Be("II");
+        }
     }
 
     public class Calculator
