@@ -1,3 +1,5 @@
+using FluentAssertions;
+
 namespace RomanNumerals.Test
 {
     public class RomanNumeralsShould
@@ -6,6 +8,22 @@ namespace RomanNumerals.Test
         public void Setup()
         {
             
+        }
+
+        [Test]
+        public void GetIWhenArabicNumberIs1()
+        {
+            var result = Calculator.GetRomanNumber();
+
+            result.Should().Be("I");
+        }
+    }
+
+    public class Calculator
+    {
+        public static object GetRomanNumber()
+        {
+            throw new NotImplementedException();
         }
     }
 }
