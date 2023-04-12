@@ -20,16 +20,24 @@ public class Calculator
         };
     }
     public string GetRomanNumber(int number)
+    { 
+        var result = SearchRomanNumeralValue(number);
+        return !string.IsNullOrEmpty(result) ? result : GetSubtractUnitRomanNumber(number);
+    }
+
+    private string SearchRomanNumeralValue(int number)
     {
-        if (number == 4)
-        {
-            return "IV";
-        }
-        if (number == 9)
-        {
-            return "IX";
-        }
-        var result = _romanNumerals.FirstOrDefault(x=> x.Key == number).Value;
-        return string.IsNullOrEmpty(result) ? string.Empty : result;
+        var romanNumeral = _romanNumerals.FirstOrDefault(x => x.Key == Math.Abs(number)).Value;
+        return string.IsNullOrEmpty(romanNumeral) ? string.Empty : romanNumeral;
+    }
+
+    private string GetSubtractUnitRomanNumber(int number)
+    {
+        var closestNumber = _romanNumerals.Aggregate((x,
+            y) => Math.Abs(x.Key - number) < Math.Abs(y.Key - number)
+            ? x
+            : y).Key;
+
+        return SearchRomanNumeralValue(number - closestNumber) + SearchRomanNumeralValue(closestNumber);
     }
 }
