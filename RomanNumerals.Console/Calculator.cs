@@ -33,11 +33,15 @@ public class Calculator
 
     private string GetSubtractUnitRomanNumber(int number)
     {
-        var closestNumber = _romanNumerals.Aggregate((x,
+        var closestNumber = GetClosetNumber(number);
+        return SearchRomanNumeralValue(number - closestNumber) + SearchRomanNumeralValue(closestNumber);
+    }
+
+    private int GetClosetNumber(int number)
+    {
+        return _romanNumerals.Aggregate((x,
             y) => Math.Abs(x.Key - number) < Math.Abs(y.Key - number)
             ? x
             : y).Key;
-
-        return SearchRomanNumeralValue(number - closestNumber) + SearchRomanNumeralValue(closestNumber);
     }
 }
