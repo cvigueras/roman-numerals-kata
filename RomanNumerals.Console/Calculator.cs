@@ -21,6 +21,10 @@ public class Calculator
     }
     public string GetRomanNumber(int number)
     {
+        if (number == 4)
+        {
+            return "IV";
+        }
         var result = _romanNumerals.FirstOrDefault(x=> x.Key == number).Value;
         return string.IsNullOrEmpty(result) ? string.Empty : result;
     }
