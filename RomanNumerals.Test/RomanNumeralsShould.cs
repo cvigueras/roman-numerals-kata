@@ -38,11 +38,11 @@ namespace RomanNumerals.Test
         }
 
         [Test]
-        public void GetIVWhenArabicNumberIs4()
+        public void GetVWhenArabicNumberIs5()
         {
-            var result = _calculator.GetRomanNumber(4);
+            var result = _calculator.GetRomanNumber(5);
 
-            result.Should().Be("IV");
+            result.Should().Be("V");
         }
     }
 }
