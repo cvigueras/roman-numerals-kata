@@ -53,5 +53,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("VII");
         }
+
+        [Test]
+        public void GetVIIIWhenArabicNumberIs8()
+        {
+            var result = _calculator.GetRomanNumber(8);
+
+            result.Should().Be("VIII");
+        }
     }
 }
