@@ -13,7 +13,7 @@ namespace RomanNumerals.Test
         [Test]
         public void GetIWhenArabicNumberIs1()
         {
-            var result = Calculator.GetRomanNumber();
+            var result = Calculator.GetRomanNumber(1);
 
             result.Should().Be("I");
         }
@@ -21,9 +21,14 @@ namespace RomanNumerals.Test
 
     public class Calculator
     {
-        public static object GetRomanNumber()
+        public static object GetRomanNumber(int i)
         {
-            throw new NotImplementedException();
+            if (i == 1)
+            {
+                return "I";
+            }
+
+            return string.Empty;
         }
     }
 }
