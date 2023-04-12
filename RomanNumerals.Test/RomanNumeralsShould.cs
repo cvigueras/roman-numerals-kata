@@ -52,5 +52,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("X");
         }
+
+        [Test]
+        public void GetLWhenArabicNumberIs50()
+        {
+            var result = _calculator.GetRomanNumber(50);
+
+            result.Should().Be("L");
+        }
     }
 }
