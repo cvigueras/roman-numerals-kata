@@ -31,35 +31,21 @@ namespace RomanNumerals.Test
 
         [TestCase(4,"IV")]
         [TestCase(9,"IX")]
-        public void GetUnitsSubtracted(int arabicNumber,string romanNumeral)
+        public void GetUnitsRomanNumbersSubtracted(int arabicNumber,string romanNumeral)
         {
             var result = _calculator.GetRomanNumber(arabicNumber);
 
             result.Should().Be(romanNumeral);
         }
 
-        [Test]
-        public void GetVIWhenArabicNumberIs6()
+        [TestCase(6, "VI")]
+        [TestCase(7, "VII")]
+        [TestCase(8, "VIII")]
+        public void GetUnitsRomanNumbersSum(int arabicNumber, string romanNumeral)
         {
-            var result = _calculator.GetRomanNumber(6);
+            var result = _calculator.GetRomanNumber(arabicNumber);
 
-            result.Should().Be("VI");
-        }
-
-        [Test]
-        public void GetVIIWhenArabicNumberIs7()
-        {
-            var result = _calculator.GetRomanNumber(7);
-
-            result.Should().Be("VII");
-        }
-
-        [Test]
-        public void GetVIIIWhenArabicNumberIs8()
-        {
-            var result = _calculator.GetRomanNumber(8);
-
-            result.Should().Be("VIII");
+            result.Should().Be(romanNumeral);
         }
     }
 }
