@@ -13,76 +13,20 @@ namespace RomanNumerals.Test
             _calculator = new Calculator();
         }
 
-        [Test]
-        public void GetIWhenArabicNumberIs1()
+        [TestCase(1, "I")]
+        [TestCase(2, "II")]
+        [TestCase(3, "III")]
+        [TestCase(5, "V")]
+        [TestCase(10, "X")]
+        [TestCase(50, "L")]
+        [TestCase(100, "C")]
+        [TestCase(500, "D")]
+        [TestCase(1000, "M")]
+        public void GetBasicsRomanNumbers(int input, string expectedResult)
         {
-            var result = _calculator.GetRomanNumber(1);
+            var result = _calculator.GetRomanNumber(input);
 
-            result.Should().Be("I");
-        }
-
-        [Test]
-        public void GetIIWhenArabicNumberIs2()
-        {
-            var result = _calculator.GetRomanNumber(2);
-
-            result.Should().Be("II");
-        }
-
-        [Test]
-        public void GetIIIWhenArabicNumberIs3()
-        {
-            var result = _calculator.GetRomanNumber(3);
-
-            result.Should().Be("III");
-        }
-
-        [Test]
-        public void GetVWhenArabicNumberIs5()
-        {
-            var result = _calculator.GetRomanNumber(5);
-
-            result.Should().Be("V");
-        }
-
-        [Test]
-        public void GetXWhenArabicNumberIs10()
-        {
-            var result = _calculator.GetRomanNumber(10);
-
-            result.Should().Be("X");
-        }
-
-        [Test]
-        public void GetLWhenArabicNumberIs50()
-        {
-            var result = _calculator.GetRomanNumber(50);
-
-            result.Should().Be("L");
-        }
-
-        [Test]
-        public void GetCWhenArabicNumberIs100()
-        {
-            var result = _calculator.GetRomanNumber(100);
-
-            result.Should().Be("C");
-        }
-
-        [Test]
-        public void GetDWhenArabicNumberIs500()
-        {
-            var result = _calculator.GetRomanNumber(500);
-
-            result.Should().Be("D");
-        }
-
-        [Test]
-        public void GetMWhenArabicNumberIs1000()
-        {
-            var result = _calculator.GetRomanNumber(1000);
-
-            result.Should().Be("M");
+            result.Should().Be(expectedResult);
         }
     }
 }
