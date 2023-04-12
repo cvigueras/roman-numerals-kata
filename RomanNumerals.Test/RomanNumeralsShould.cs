@@ -29,20 +29,13 @@ namespace RomanNumerals.Test
             result.Should().Be(expectedResult);
         }
 
-        [Test]
-        public void GetIVWhenArabicNumberIs4()
+        [TestCase(4,"IV")]
+        [TestCase(9,"IX")]
+        public void GetUnitsSubtracted(int arabicNumber,string romanNumeral)
         {
-            var result = _calculator.GetRomanNumber(4);
+            var result = _calculator.GetRomanNumber(arabicNumber);
 
-            result.Should().Be("IV");
-        }
-
-        [Test]
-        public void GetIXWhenArabicNumberIs9()
-        {
-            var result = _calculator.GetRomanNumber(9);
-
-            result.Should().Be("IX");
+            result.Should().Be(romanNumeral);
         }
     }
 }
