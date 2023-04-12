@@ -25,6 +25,10 @@ public class Calculator
         {
             return "IV";
         }
+        if (number == 9)
+        {
+            return "IX";
+        }
         var result = _romanNumerals.FirstOrDefault(x=> x.Key == number).Value;
         return string.IsNullOrEmpty(result) ? string.Empty : result;
     }
