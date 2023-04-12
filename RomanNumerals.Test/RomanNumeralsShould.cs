@@ -25,6 +25,14 @@ namespace RomanNumerals.Test
 
             result.Should().Be("II");
         }
+
+        [Test]
+        public void GetIIIWhenArabicNumberIs3()
+        {
+            var result = Calculator.GetRomanNumber(3);
+
+            result.Should().Be("III");
+        }
     }
 
     public class Calculator
