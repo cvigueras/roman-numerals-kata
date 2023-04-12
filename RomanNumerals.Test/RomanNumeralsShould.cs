@@ -37,5 +37,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be(romanNumeral);
         }
+
+        [Test]
+        public void GetVIWhenArabicNumberIs6()
+        {
+            var result = _calculator.GetRomanNumber(6);
+
+            result.Should().Be("VI");
+        }
     }
 }

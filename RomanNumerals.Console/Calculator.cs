@@ -20,7 +20,7 @@ public class Calculator
         };
     }
     public string GetRomanNumber(int number)
-    { 
+    {
         var result = SearchRomanNumeralValue(number);
         return !string.IsNullOrEmpty(result) ? result : GetSubtractUnitRomanNumber(number);
     }
