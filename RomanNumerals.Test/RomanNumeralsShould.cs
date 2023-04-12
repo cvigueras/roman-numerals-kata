@@ -60,5 +60,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("L");
         }
+
+        [Test]
+        public void GetCWhenArabicNumberIs100()
+        {
+            var result = _calculator.GetRomanNumber(100);
+
+            result.Should().Be("C");
+        }
     }
 }
