@@ -36,5 +36,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("III");
         }
+
+        [Test]
+        public void GetIVWhenArabicNumberIs4()
+        {
+            var result = _calculator.GetRomanNumber(4);
+
+            result.Should().Be("IV");
+        }
     }
 }
