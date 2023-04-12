@@ -13,6 +13,7 @@ public class Calculator
             {3, "III"},
             {5, "V"},
             {10, "X"},
+            {50, "L"},
         };
     }
     public string GetRomanNumber(int number)
