@@ -36,5 +36,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("IV");
         }
+
+        [Test]
+        public void GetIXWhenArabicNumberIs9()
+        {
+            var result = _calculator.GetRomanNumber(9);
+
+            result.Should().Be("IX");
+        }
     }
 }
