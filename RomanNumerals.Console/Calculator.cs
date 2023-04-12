@@ -21,20 +21,20 @@ public class Calculator
     }
     public string GetRomanNumber(int number)
     {
-        if (number == 6)
-        {
-            return "VI";
-        }
-        if (number == 7)
-        {
-            return "VII";
-        }
-        if (number == 8)
-        {
-            return "VIII";
-        }
-        var result = SearchRomanNumeralValue(number);
-        return !string.IsNullOrEmpty(result) ? result : GetSubtractUnitRomanNumber(number);
+        return !string.IsNullOrEmpty(SearchRomanNumeralValue(number))
+            ? SearchRomanNumeralValue(number)
+            : FormatUnitRomanNumber(number);
+    }
+
+    private string FormatUnitRomanNumber(int number)
+    {
+        return number is > 5 and < 9 ? GetSumUnitRomanNumber(number) : GetSubtractUnitRomanNumber(number);
+    }
+
+    private string GetSumUnitRomanNumber(int number)
+    {
+        var closestNumber = 5;
+        return SearchRomanNumeralValue(closestNumber) + SearchRomanNumeralValue(number - closestNumber);
     }
 
     private string SearchRomanNumeralValue(int number)
