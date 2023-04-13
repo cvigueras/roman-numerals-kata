@@ -19,4 +19,22 @@ public class RomanNumerals
             {1000, "M"},
         };
     }
+
+    public string SearchRomanNumeralValue(int number)
+    {
+        return Values.FirstOrDefault(x => x.Key == Math.Abs(number)).Value;
+    }
+
+    public int GetPreviousClosestNumber(int number)
+    {
+        return Values.Keys.TakeWhile(x => x != GetClosestNumber(number)).LastOrDefault();
+    }
+
+    public int GetClosestNumber(int number)
+    {
+        return Values.Aggregate((x,
+            y) => Math.Abs(x.Key - number) < Math.Abs(y.Key - number)
+            ? x
+            : y).Key;
+    }
 }

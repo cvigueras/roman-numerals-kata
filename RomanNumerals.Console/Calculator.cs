@@ -9,43 +9,25 @@ public class Calculator
         _romanNumerals = new RomanNumerals();
     }
 
-    public string GetRomanNumber(ArabicNumber num)
+    public string GetRomanNumber(ArabicNumber number)
     {
-        return !string.IsNullOrEmpty(SearchRomanNumeralValue(num.Value))
-            ? SearchRomanNumeralValue(num.Value)
-            : FormatUnitRomanNumber(num.Value);
+        return !string.IsNullOrEmpty(_romanNumerals.SearchRomanNumeralValue(number.Value))
+            ? _romanNumerals.SearchRomanNumeralValue(number.Value)
+            : FormatUnitRomanNumber(number);
     }
 
-    private string FormatUnitRomanNumber(int number)
+    private string FormatUnitRomanNumber(ArabicNumber value)
     {
-        var closestNumber = GetClosestNumber(number);
-        if (closestNumber > number)
+        var closestNumber = _romanNumerals.GetClosestNumber(value.Value);
+        if (closestNumber > value.Value)
         {
-            if (Math.Abs(number - closestNumber) > 1)
+            if (Math.Abs(value.Value - closestNumber) > 1)
             {
-                closestNumber = GetPreviousClosestNumber(number);
-                return SearchRomanNumeralValue(closestNumber) + SearchRomanNumeralValue(number - closestNumber);
+                closestNumber = _romanNumerals.GetPreviousClosestNumber(value.Value);
+                return _romanNumerals.SearchRomanNumeralValue(closestNumber) + _romanNumerals.SearchRomanNumeralValue(value.Value - closestNumber);
             }
-            return SearchRomanNumeralValue(number - closestNumber) + SearchRomanNumeralValue(closestNumber);
+            return _romanNumerals.SearchRomanNumeralValue(value.Value - closestNumber) + _romanNumerals.SearchRomanNumeralValue(closestNumber);
         }
-        return SearchRomanNumeralValue(closestNumber) + SearchRomanNumeralValue(number - closestNumber);
-    }
-
-    private string SearchRomanNumeralValue(int number)
-    {
-        return _romanNumerals.Values.FirstOrDefault(x => x.Key == Math.Abs(number)).Value;
-    }
-
-    private int GetPreviousClosestNumber(int number)
-    {
-        return _romanNumerals.Values.Keys.TakeWhile(x => x != GetClosestNumber(number)).LastOrDefault();
-    }
-
-    private int GetClosestNumber(int number)
-    {
-        return _romanNumerals.Values.Aggregate((x,
-            y) => Math.Abs(x.Key - number) < Math.Abs(y.Key - number)
-            ? x
-            : y).Key;
+        return _romanNumerals.SearchRomanNumeralValue(closestNumber) + _romanNumerals.SearchRomanNumeralValue(value.Value - closestNumber);
     }
 }
