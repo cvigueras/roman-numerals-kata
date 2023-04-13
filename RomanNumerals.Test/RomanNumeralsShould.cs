@@ -77,28 +77,14 @@ namespace RomanNumerals.Test
             result.Should().Be(romanNumeral);
         }
 
-        [Test]
-        public void GetXLWhenRomanNumberIs40()
+        [TestCase(40, "XL")]
+        [TestCase(41, "XLI")]
+        [TestCase(49, "XLIX")]
+        public void GetFourthTensRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(40));
+            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
 
-            result.Should().Be("XL");
-        }
-
-        [Test]
-        public void GetXLIWhenRomanNumberIs41()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(41));
-
-            result.Should().Be("XLI");
-        }
-
-        [Test]
-        public void GetXLIXWhenRomanNumberIs49()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(49));
-
-            result.Should().Be("XLIX");
+            result.Should().Be(romanNumeral);
         }
     }
 }
