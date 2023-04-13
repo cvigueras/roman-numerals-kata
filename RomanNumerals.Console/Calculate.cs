@@ -11,30 +11,30 @@ public class Calculate
 
     public string RomanNumber(ArabicNumber number)
     {
-        
         var romanNumber = _romanNumerals.SearchRomanNumeralValue(number.Value);
         if (!string.IsNullOrEmpty(romanNumber))
         {
             return romanNumber;
         }
-        romanNumber = FormatTensRomanNumber(number);
-        if (string.IsNullOrEmpty(romanNumber))
+        var numberSplit = NumberValueToList(number);
+
+        for (var i = 0; i < numberSplit.Count(); i++)
         {
-            var numberSplit = NumberValueToList(number);
-
-            for (var i = 0; i < numberSplit.Count(); i++)
+            if (i == 0)
             {
-                if (i == 0)
+                if (numberSplit[i] == "0")
                 {
-                    romanNumber += FormatUnitsRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[0])));
+                    continue;
                 }
+                romanNumber += FormatUnitsRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[0])));
+            }
 
-                if (i == 1)
-                {
-                    romanNumber = _romanNumerals.SearchRomanNumeralValue(Convert.ToInt32(numberSplit[1])) + romanNumber;
-                }
+            if (i == 1)
+            {
+                romanNumber = FormatTensRomanNumber(number) + romanNumber;
             }
         }
+
 
         return romanNumber;
     }
@@ -46,24 +46,12 @@ public class Calculate
             .Split(",").Reverse().ToList();
     }
 
-    private static string FormatTensRomanNumber(ArabicNumber number)
+    private string FormatTensRomanNumber(ArabicNumber number)
     {
-        if (number.Value == 20)
-        {
-            return "XX";
-        }
-
-        if (number.Value == 21)
-        {
-            return "XXI";
-        }
-
-        if (number.Value == 29)
-        {
-            return "XXIX";
-        }
-
-        return string.Empty;
+        if (number.Value >= 30) return string.Empty;
+        var tensNumber = number.Value / 10;
+        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(10);
+        return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
     }
 
     private string FormatUnitsRomanNumber(ArabicNumber number)
