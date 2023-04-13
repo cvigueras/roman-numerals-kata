@@ -48,5 +48,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("XI");
         }
+
+        [Test]
+        public void GetXIIWhenArabicNumberIs12()
+        {
+            var result = _calculate.RomanNumber(new ArabicNumber(12));
+
+            result.Should().Be("XII");
+        }
     }
 }
