@@ -84,5 +84,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("XL");
         }
+
+        [Test]
+        public void GetXLIWhenRomanNumberIs41()
+        {
+            var result = _calculate.RomanNumber(new ArabicNumber(41));
+
+            result.Should().Be("XLI");
+        }
     }
 }
