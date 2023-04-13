@@ -48,7 +48,14 @@ public class Calculate
 
     private string FormatTensRomanNumber(ArabicNumber number)
     {
-        if (number.Value > 30) return string.Empty;
+        if (number.Value > 30)
+        {
+            if (number.Value == 40)
+            {
+                return "XL";
+            }
+            return string.Empty;
+        }
         var tensNumber = number.Value / 10;
         var romanNumeral = _romanNumerals.SearchRomanNumeralValue(10);
         return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
