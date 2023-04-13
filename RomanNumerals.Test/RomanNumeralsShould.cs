@@ -40,5 +40,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be(romanNumeral);
         }
+
+        [Test]
+        public void GetXIWhenArabicNumberIs11()
+        {
+            var result = _calculate.RomanNumber(new ArabicNumber(11));
+
+            result.Should().Be("XI");
+        }
     }
 }
