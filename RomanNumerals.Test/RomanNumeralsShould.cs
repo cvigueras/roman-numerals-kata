@@ -50,35 +50,14 @@ namespace RomanNumerals.Test
         [TestCase(17,"XVII")]
         [TestCase(18,"XVIII")]
         [TestCase(19,"XIX")]
+        [TestCase(20,"XX")]
+        [TestCase(21,"XXI")]
+        [TestCase(29,"XXIX")]
         public void GetTensRomanNumbers(int arabicNumber,string romanNumeral)
         {
             var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
 
             result.Should().Be(romanNumeral);
-        }
-
-        [Test]
-        public void GetXXWhenRomanNumbersIs20()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(20));
-
-            result.Should().Be("XX");
-        }
-
-        [Test]
-        public void GetXXIWhenRomanNumbersIs21()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(21));
-
-            result.Should().Be("XXI");
-        }
-
-        [Test]
-        public void GetXXIXWhenRomanNumbersIs29()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(29));
-
-            result.Should().Be("XXIX");
         }
     }
 }
