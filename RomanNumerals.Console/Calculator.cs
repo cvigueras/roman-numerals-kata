@@ -18,28 +18,30 @@ public class Calculator
 
     private string FormatUnitRomanNumber(int number)
     {
-        return number is > 5 and < 9 ? GetSumUnitRomanNumber(number) : GetSubtractUnitRomanNumber(number);
-    }
-
-    private string GetSumUnitRomanNumber(int number)
-    {
-        var closestNumber = 5;
+        var closestNumber = GetClosestNumber(number);
+        if (closestNumber > number)
+        {
+            if (Math.Abs(number - closestNumber) > 1)
+            {
+                closestNumber = GetPreviousClosestNumber(number);
+                return SearchRomanNumeralValue(closestNumber) + SearchRomanNumeralValue(number - closestNumber);
+            }
+            return SearchRomanNumeralValue(number - closestNumber) + SearchRomanNumeralValue(closestNumber);
+        }
         return SearchRomanNumeralValue(closestNumber) + SearchRomanNumeralValue(number - closestNumber);
     }
 
     private string SearchRomanNumeralValue(int number)
     {
-        var romanNumeral = _romanNumerals.Values.FirstOrDefault(x => x.Key == Math.Abs(number)).Value;
-        return string.IsNullOrEmpty(romanNumeral) ? string.Empty : romanNumeral;
+        return _romanNumerals.Values.FirstOrDefault(x => x.Key == Math.Abs(number)).Value;
     }
 
-    private string GetSubtractUnitRomanNumber(int number)
+    private int GetPreviousClosestNumber(int number)
     {
-        var closestNumber = GetClosetNumber(number);
-        return SearchRomanNumeralValue(number - closestNumber) + SearchRomanNumeralValue(closestNumber);
+        return _romanNumerals.Values.Keys.TakeWhile(x => x != GetClosestNumber(number)).LastOrDefault();
     }
 
-    private int GetClosetNumber(int number)
+    private int GetClosestNumber(int number)
     {
         return _romanNumerals.Values.Aggregate((x,
             y) => Math.Abs(x.Key - number) < Math.Abs(y.Key - number)
