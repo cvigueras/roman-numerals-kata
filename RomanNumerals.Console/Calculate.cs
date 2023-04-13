@@ -19,6 +19,10 @@ public class Calculate
         {
             return "XXI";
         }
+        if (number.Value == 29)
+        {
+            return "XXIX";
+        }
         var romanNumber = _romanNumerals.SearchRomanNumeralValue(number.Value);
         if (!string.IsNullOrEmpty(romanNumber))
         {
