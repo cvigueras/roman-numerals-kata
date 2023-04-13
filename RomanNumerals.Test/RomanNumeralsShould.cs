@@ -92,5 +92,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("XLI");
         }
+
+        [Test]
+        public void GetXLIXWhenRomanNumberIs49()
+        {
+            var result = _calculate.RomanNumber(new ArabicNumber(49));
+
+            result.Should().Be("XLIX");
+        }
     }
 }
