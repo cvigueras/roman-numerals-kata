@@ -20,9 +20,7 @@ public class Calculate
         romanNumber = FormatTensRomanNumber(number);
         if (string.IsNullOrEmpty(romanNumber))
         {
-            var numberSplit = string.Join(",", number.Value.ToString()
-                    .Select((item, index) => item.ToString().PadRight(number.Value.ToString().Length - index, '0')))
-                .Split(",").Reverse().ToList();
+            var numberSplit = NumberValueToList(number);
 
             for (var i = 0; i < numberSplit.Count(); i++)
             {
@@ -39,6 +37,13 @@ public class Calculate
         }
 
         return romanNumber;
+    }
+
+    private static List<string> NumberValueToList(ArabicNumber number)
+    {
+        return string.Join(",", number.Value.ToString()
+                .Select((item, index) => item.ToString().PadRight(number.Value.ToString().Length - index, '0')))
+            .Split(",").Reverse().ToList();
     }
 
     private static string FormatTensRomanNumber(ArabicNumber number)
