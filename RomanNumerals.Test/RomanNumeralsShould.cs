@@ -88,5 +88,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("XVI");
         }
+
+        [Test]
+        public void GetXVIWhenArabicNumberIs19()
+        {
+            var result = _calculate.RomanNumber(new ArabicNumber(19));
+
+            result.Should().Be("XIX");
+        }
     }
 }
