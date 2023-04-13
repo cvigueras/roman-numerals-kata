@@ -29,10 +29,10 @@ namespace RomanNumerals.Test
             result.Should().Be(romanNumeral);
         }
 
+        [TestCase(4,"IV")]
         [TestCase(6, "VI")]
         [TestCase(7, "VII")]
         [TestCase(8, "VIII")]
-        [TestCase(4,"IV")]
         [TestCase(9,"IX")]
         public void GetUnitsRomanNumbers(int arabicNumber,string romanNumeral)
         {
@@ -47,6 +47,8 @@ namespace RomanNumerals.Test
         [TestCase(14,"XIV")]
         [TestCase(15,"XV")]
         [TestCase(16,"XVI")]
+        [TestCase(17,"XVII")]
+        [TestCase(18,"XVIII")]
         [TestCase(19,"XIX")]
         public void GetTensRomanNumbers(int arabicNumber,string romanNumeral)
         {
