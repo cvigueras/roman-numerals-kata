@@ -11,38 +11,54 @@ public class Calculate
 
     public string RomanNumber(ArabicNumber number)
     {
-        if (number.Value == 20)
-        {
-            return "XX";
-        }
-        if (number.Value == 21)
-        {
-            return "XXI";
-        }
-        if (number.Value == 29)
-        {
-            return "XXIX";
-        }
+        
         var romanNumber = _romanNumerals.SearchRomanNumeralValue(number.Value);
         if (!string.IsNullOrEmpty(romanNumber))
         {
             return romanNumber;
         }
-        var numberSplit = string.Join(",", number.Value.ToString()
-            .Select((item, index) => item.ToString().PadRight(number.Value.ToString().Length - index, '0'))).Split(",").Reverse().ToList();
-        for (var i = 0; i < numberSplit.Count(); i++)
+        romanNumber = FormatTensRomanNumber(number);
+        if (string.IsNullOrEmpty(romanNumber))
         {
-            if (i == 0)
-            {
-                romanNumber += FormatUnitsRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[0])));
-            }
+            var numberSplit = string.Join(",", number.Value.ToString()
+                    .Select((item, index) => item.ToString().PadRight(number.Value.ToString().Length - index, '0')))
+                .Split(",").Reverse().ToList();
 
-            if (i == 1)
+            for (var i = 0; i < numberSplit.Count(); i++)
             {
-                romanNumber = _romanNumerals.SearchRomanNumeralValue(Convert.ToInt32(numberSplit[1])) + romanNumber;
+                if (i == 0)
+                {
+                    romanNumber += FormatUnitsRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[0])));
+                }
+
+                if (i == 1)
+                {
+                    romanNumber = _romanNumerals.SearchRomanNumeralValue(Convert.ToInt32(numberSplit[1])) + romanNumber;
+                }
             }
         }
+
         return romanNumber;
+    }
+
+    private static string FormatTensRomanNumber(ArabicNumber number)
+    {
+        if (number.Value == 20)
+        {
+            return "XX";
+        }
+
+        if (number.Value == 21)
+        {
+            return "XXI";
+        }
+
+        if (number.Value == 29)
+        {
+            return "XXIX";
+        }
+
+        return string.Empty;
     }
 
     private string FormatUnitsRomanNumber(ArabicNumber number)
