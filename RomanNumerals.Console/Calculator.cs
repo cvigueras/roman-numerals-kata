@@ -2,23 +2,13 @@ namespace RomanNumerals.Console;
 
 public class Calculator
 {
-    private readonly Dictionary<int, string> _romanNumerals;
+    private readonly RomanNumerals _romanNumerals;
 
     public Calculator()
     {
-        _romanNumerals = new Dictionary<int, string>
-        {
-            {1, "I"},
-            {2, "II"},
-            {3, "III"},
-            {5, "V"},
-            {10, "X"},
-            {50, "L"},
-            {100, "C"},
-            {500, "D"},
-            {1000, "M"},
-        };
+        _romanNumerals = new RomanNumerals();
     }
+
     public string GetRomanNumber(ArabicNumber num)
     {
         return !string.IsNullOrEmpty(SearchRomanNumeralValue(num.Value))
@@ -39,7 +29,7 @@ public class Calculator
 
     private string SearchRomanNumeralValue(int number)
     {
-        var romanNumeral = _romanNumerals.FirstOrDefault(x => x.Key == Math.Abs(number)).Value;
+        var romanNumeral = _romanNumerals.Values.FirstOrDefault(x => x.Key == Math.Abs(number)).Value;
         return string.IsNullOrEmpty(romanNumeral) ? string.Empty : romanNumeral;
     }
 
@@ -51,7 +41,7 @@ public class Calculator
 
     private int GetClosetNumber(int number)
     {
-        return _romanNumerals.Aggregate((x,
+        return _romanNumerals.Values.Aggregate((x,
             y) => Math.Abs(x.Key - number) < Math.Abs(y.Key - number)
             ? x
             : y).Key;
