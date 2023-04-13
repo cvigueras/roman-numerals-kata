@@ -11,34 +11,26 @@ public class Calculate
 
     public string RomanNumber(ArabicNumber number)
     {
-        var result = FormatTensRomanNumber(number);
-        if (string.IsNullOrEmpty(result))
+        var romanNumber = _romanNumerals.SearchRomanNumeralValue(number.Value);
+        if (!string.IsNullOrEmpty(romanNumber))
         {
-            return !string.IsNullOrEmpty(_romanNumerals.SearchRomanNumeralValue(number.Value))
-                ? _romanNumerals.SearchRomanNumeralValue(number.Value)
-                : FormatUnitsRomanNumber(number);
+            return romanNumber;
         }
-        return result;
-    }
-
-    private static string FormatTensRomanNumber(ArabicNumber number)
-    {
-        if (number.Value == 14)
+        var numberSplit = string.Join(",", number.Value.ToString()
+            .Select((item, index) => item.ToString().PadRight(number.Value.ToString().Length - index, '0'))).Split(",").Reverse().ToList();
+        for (var i = 0; i < numberSplit.Count(); i++)
         {
-            return "XIV";
-        }
+            if (i == 0)
+            {
+                romanNumber += FormatUnitsRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[0])));
+            }
 
-        if (number.Value == 16)
-        {
-            return "XVI";
+            if (i == 1)
+            {
+                romanNumber = _romanNumerals.SearchRomanNumeralValue(Convert.ToInt32(numberSplit[1])) + romanNumber;
+            }
         }
-
-        if (number.Value == 19)
-        {
-            return "XIX";
-        }
-
-        return string.Empty;
+        return romanNumber;
     }
 
     private string FormatUnitsRomanNumber(ArabicNumber number)
