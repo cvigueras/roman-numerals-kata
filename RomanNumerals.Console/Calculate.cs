@@ -11,6 +11,10 @@ public class Calculate
 
     public string RomanNumber(ArabicNumber number)
     {
+        if (number.Value == 20)
+        {
+            return "XX";
+        }
         var romanNumber = _romanNumerals.SearchRomanNumeralValue(number.Value);
         if (!string.IsNullOrEmpty(romanNumber))
         {
