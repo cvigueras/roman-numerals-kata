@@ -67,7 +67,6 @@ namespace RomanNumerals.Test
             result.Should().Be(romanNumeral);
         }
 
-
         [TestCase(30, "XXX")]
         [TestCase(35, "XXXV")]
         [TestCase(39, "XXXIX")]
@@ -76,6 +75,14 @@ namespace RomanNumerals.Test
             var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
 
             result.Should().Be(romanNumeral);
+        }
+
+        [Test]
+        public void GetXLWhenRomanNumberIs40()
+        {
+            var result = _calculate.RomanNumber(new ArabicNumber(40));
+
+            result.Should().Be("XL");
         }
     }
 }
