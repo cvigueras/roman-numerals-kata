@@ -41,60 +41,18 @@ namespace RomanNumerals.Test
             result.Should().Be(romanNumeral);
         }
 
-        [Test]
-        public void GetXIWhenArabicNumberIs11()
+        [TestCase(11, "XI")]
+        [TestCase(12, "XII")]
+        [TestCase(13, "XIII")]
+        [TestCase(14,"XIV")]
+        [TestCase(15,"XV")]
+        [TestCase(16,"XVI")]
+        [TestCase(19,"XIX")]
+        public void GetTensRomanNumbers(int arabicNumber,string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(11));
+            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
 
-            result.Should().Be("XI");
-        }
-
-        [Test]
-        public void GetXIIWhenArabicNumberIs12()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(12));
-
-            result.Should().Be("XII");
-        }
-
-        [Test]
-        public void GetXIIIWhenArabicNumberIs13()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(13));
-
-            result.Should().Be("XIII");
-        }
-
-        [Test]
-        public void GetXIVWhenArabicNumberIs14()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(14));
-
-            result.Should().Be("XIV");
-        }
-
-        [Test]
-        public void GetXVWhenArabicNumberIs15()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(15));
-
-            result.Should().Be("XV");
-        }
-
-        [Test]
-        public void GetXVIWhenArabicNumberIs16()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(16));
-
-            result.Should().Be("XVI");
-        }
-
-        [Test]
-        public void GetXVIWhenArabicNumberIs19()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(19));
-
-            result.Should().Be("XIX");
+            result.Should().Be(romanNumeral);
         }
     }
 }
