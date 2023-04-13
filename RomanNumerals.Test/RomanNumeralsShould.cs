@@ -24,7 +24,7 @@ namespace RomanNumerals.Test
         [TestCase(1000, "M")]
         public void GetBasicsRomanNumbers(int input, string expectedResult)
         {
-            var result = _calculator.GetRomanNumber(input);
+            var result = _calculator.GetRomanNumber(new ArabicNumber(input));
 
             result.Should().Be(expectedResult);
         }
@@ -33,7 +33,7 @@ namespace RomanNumerals.Test
         [TestCase(9,"IX")]
         public void GetUnitsRomanNumbersSubtracted(int arabicNumber,string romanNumeral)
         {
-            var result = _calculator.GetRomanNumber(arabicNumber);
+            var result = _calculator.GetRomanNumber(new ArabicNumber(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
@@ -43,7 +43,7 @@ namespace RomanNumerals.Test
         [TestCase(8, "VIII")]
         public void GetUnitsRomanNumbersSum(int arabicNumber, string romanNumeral)
         {
-            var result = _calculator.GetRomanNumber(arabicNumber);
+            var result = _calculator.GetRomanNumber(new ArabicNumber(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }

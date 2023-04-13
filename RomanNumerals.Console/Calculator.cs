@@ -19,11 +19,11 @@ public class Calculator
             {1000, "M"},
         };
     }
-    public string GetRomanNumber(int number)
+    public string GetRomanNumber(ArabicNumber num)
     {
-        return !string.IsNullOrEmpty(SearchRomanNumeralValue(number))
-            ? SearchRomanNumeralValue(number)
-            : FormatUnitRomanNumber(number);
+        return !string.IsNullOrEmpty(SearchRomanNumeralValue(num.Value))
+            ? SearchRomanNumeralValue(num.Value)
+            : FormatUnitRomanNumber(num.Value);
     }
 
     private string FormatUnitRomanNumber(int number)
