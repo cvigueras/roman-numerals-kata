@@ -31,7 +31,7 @@ public class Calculate
 
             if (i == 1)
             {
-                romanNumber = FormatTensRomanNumber(number) + romanNumber;
+                romanNumber = FormatTensRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[1]))) + romanNumber;
             }
         }
 
@@ -48,7 +48,7 @@ public class Calculate
 
     private string FormatTensRomanNumber(ArabicNumber number)
     {
-        if (number.Value >= 30) return string.Empty;
+        if (number.Value > 30) return string.Empty;
         var tensNumber = number.Value / 10;
         var romanNumeral = _romanNumerals.SearchRomanNumeralValue(10);
         return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));

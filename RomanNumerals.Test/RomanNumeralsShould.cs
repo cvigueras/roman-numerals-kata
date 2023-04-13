@@ -67,25 +67,15 @@ namespace RomanNumerals.Test
             result.Should().Be(romanNumeral);
         }
 
-        public void GetXXXRomanWhenNumbersIs30()
+
+        [TestCase(30, "XXX")]
+        [TestCase(35, "XXXV")]
+        [TestCase(39, "XXXIX")]
+        public void GetThirdTensRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(30));
+            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
 
-            result.Should().Be("XXX");
-        }
-
-        public void GetXXXVRomanWhenNumbersIs35()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(35));
-
-            result.Should().Be("XXXV");
-        }
-
-        public void GetXXXIXRomanWhenNumbersIs39()
-        {
-            var result = _calculate.RomanNumber(new ArabicNumber(39));
-
-            result.Should().Be("XXXIX");
+            result.Should().Be(romanNumeral);
         }
     }
 }
