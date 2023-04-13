@@ -72,5 +72,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("XIV");
         }
+
+        [Test]
+        public void GetXVWhenArabicNumberIs15()
+        {
+            var result = _calculate.RomanNumber(new ArabicNumber(15));
+
+            result.Should().Be("XV");
+        }
     }
 }
