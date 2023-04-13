@@ -15,6 +15,10 @@ public class Calculate
         {
             return "XIV";
         }
+        if (number.Value == 16)
+        {
+            return "XVI";
+        }
         return !string.IsNullOrEmpty(_romanNumerals.SearchRomanNumeralValue(number.Value))
             ? _romanNumerals.SearchRomanNumeralValue(number.Value)
             : FormatUnitsRomanNumber(number);
