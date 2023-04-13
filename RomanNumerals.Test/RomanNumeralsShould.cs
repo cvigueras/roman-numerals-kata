@@ -5,12 +5,12 @@ namespace RomanNumerals.Test
 {
     public class RomanNumeralsShould
     {
-        private Calculator _calculator;
+        private Calculate _calculate;
 
         [SetUp]
         public void Setup()
         {
-            _calculator = new Calculator();
+            _calculate = new Calculate();
         }
 
         [TestCase(1, "I")]
@@ -24,7 +24,7 @@ namespace RomanNumerals.Test
         [TestCase(1000, "M")]
         public void GetBasicsRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculator.GetRomanNumber(new ArabicNumber(arabicNumber));
+            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
@@ -36,7 +36,7 @@ namespace RomanNumerals.Test
         [TestCase(9,"IX")]
         public void GetUnitsRomanNumbers(int arabicNumber,string romanNumeral)
         {
-            var result = _calculator.GetRomanNumber(new ArabicNumber(arabicNumber));
+            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
