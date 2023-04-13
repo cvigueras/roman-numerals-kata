@@ -22,16 +22,7 @@ namespace RomanNumerals.Test
         [TestCase(100, "C")]
         [TestCase(500, "D")]
         [TestCase(1000, "M")]
-        public void GetBasicsRomanNumbers(int input, string expectedResult)
-        {
-            var result = _calculator.GetRomanNumber(new ArabicNumber(input));
-
-            result.Should().Be(expectedResult);
-        }
-
-        [TestCase(4,"IV")]
-        [TestCase(9,"IX")]
-        public void GetUnitsRomanNumbersSubtracted(int arabicNumber,string romanNumeral)
+        public void GetBasicsRomanNumbers(int arabicNumber, string romanNumeral)
         {
             var result = _calculator.GetRomanNumber(new ArabicNumber(arabicNumber));
 
@@ -41,7 +32,9 @@ namespace RomanNumerals.Test
         [TestCase(6, "VI")]
         [TestCase(7, "VII")]
         [TestCase(8, "VIII")]
-        public void GetUnitsRomanNumbersSum(int arabicNumber, string romanNumeral)
+        [TestCase(4,"IV")]
+        [TestCase(9,"IX")]
+        public void GetUnitsRomanNumbers(int arabicNumber,string romanNumeral)
         {
             var result = _calculator.GetRomanNumber(new ArabicNumber(arabicNumber));
 
