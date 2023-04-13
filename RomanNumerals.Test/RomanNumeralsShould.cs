@@ -73,5 +73,12 @@ namespace RomanNumerals.Test
 
             result.Should().Be("XXXV");
         }
+
+        public void GetXXXIXRomanWhenNumbersIs39()
+        {
+            var result = _calculate.RomanNumber(new ArabicNumber(39));
+
+            result.Should().Be("XXXIX");
+        }
     }
 }
