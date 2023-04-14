@@ -138,5 +138,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("CL");
         }
+
+        [Test]
+        public void GetCLXXXIXWhenNumberIs189()
+        {
+            var result = _calculate.RomanNumber(new Number(189));
+
+            result.Should().Be("CLXXXIX");
+        }
     }
 }

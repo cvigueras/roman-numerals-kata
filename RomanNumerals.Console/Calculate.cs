@@ -29,10 +29,12 @@ public class Calculate
         {
             return string.Empty;
         }
+
         if (number.Value > number.MaxValue * 3)
         {
             return FormatRomanNumber(number, number.MaxValue);
         }
+
         var tensNumber = number.Value / number.MaxValue;
         var romanNumeral = _romanNumerals.SearchRomanNumeralValue(number.MaxValue);
         return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
