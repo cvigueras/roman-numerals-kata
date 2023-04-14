@@ -38,15 +38,15 @@ public class RomanNumerals
             : y).Key;
     }
 
-    public string FormatUnitsSum(ArabicNumber number, int closestNumber)
+    public string FormatUnitsSum(ArabicNumber number)
     {
-        return SearchRomanNumeralValue(closestNumber) +
-               SearchRomanNumeralValue(number.Value - closestNumber);
+        return SearchRomanNumeralValue(number.ClosestNumber) +
+               SearchRomanNumeralValue(number.Value - number.ClosestNumber);
     }
 
-    public string FormatUnitsSubtract(ArabicNumber number, int closestNumber)
+    public string FormatUnitsSubtract(ArabicNumber number)
     {
-        return SearchRomanNumeralValue(number.Value - closestNumber) +
-               SearchRomanNumeralValue(closestNumber);
+        return SearchRomanNumeralValue(number.Value - number.ClosestNumber) +
+               SearchRomanNumeralValue(number.ClosestNumber);
     }
 }
