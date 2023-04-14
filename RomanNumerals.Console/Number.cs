@@ -33,6 +33,13 @@ public class Number
 
     public string FormatUnitsSum(Number number)
     {
+        if (number.Value - number.ClosestNumber >= 30)
+        {
+            var unitNumber = (number.Value - number.ClosestNumber) / 3;
+            var result = _romanNumerals.SearchRomanNumeralValue(unitNumber);
+            return _romanNumerals.SearchRomanNumeralValue(number.ClosestNumber) +
+                   result.PadLeft(3, Convert.ToChar(result));
+        }
         return _romanNumerals.SearchRomanNumeralValue(number.ClosestNumber) +
                _romanNumerals.SearchRomanNumeralValue(number.Value - number.ClosestNumber);
     }
