@@ -17,9 +17,9 @@ public class ArabicNumber
             .Split(",").Reverse().ToList();
     }
 
-    public bool IsSubtract()
+    public bool IsSubtract(int value)
     {
-        return Math.Abs(Value - ClosestNumber) == 1 && ClosestNumber > Value;
+        return Math.Abs(Value - ClosestNumber) == value && ClosestNumber > Value;
     }
 
     public bool IsTensSubtract()

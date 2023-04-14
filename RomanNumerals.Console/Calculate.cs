@@ -26,43 +26,32 @@ public class Calculate
                 {
                     continue;
                 }
-                romanNumber += FormatUnitsRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[0])));
+                romanNumber += FormatRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[0])), 1);
             }
 
             if (i == 1)
             {
-                romanNumber = FormatTensRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[1]))) + romanNumber;
+                romanNumber = FormatTensRomanNumber(new ArabicNumber(Convert.ToInt32(numberSplit[1])), 10) + romanNumber;
             }
         }
-
-
         return romanNumber;
     }
 
-    private string FormatTensRomanNumber(ArabicNumber number)
+    private string FormatTensRomanNumber(ArabicNumber number, int value)
     {
         if (number.Value > 30)
         {
-            number.ClosestNumber = _romanNumerals.GetClosestNumber(number.Value);
-            if (number.IsTensSubtract())
-            {
-                return _romanNumerals.FormatUnitsSubtract(number);
-            }
-            if (number.IsClosestGreaterThanNumber())
-            {
-                number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(number.Value);
-            }
-            return _romanNumerals.FormatUnitsSum(number);
+            return FormatRomanNumber(number, value);
         }
         var tensNumber = number.Value / 10;
         var romanNumeral = _romanNumerals.SearchRomanNumeralValue(10);
         return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
     }
 
-    private string FormatUnitsRomanNumber(ArabicNumber number)
+    private string FormatRomanNumber(ArabicNumber number, int value)
     {
         number.ClosestNumber = _romanNumerals.GetClosestNumber(number.Value);
-        if (number.IsSubtract())
+        if (number.IsSubtract(value))
         {
             return _romanNumerals.FormatUnitsSubtract(number);
         }
