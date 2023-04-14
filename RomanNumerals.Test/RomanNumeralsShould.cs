@@ -115,45 +115,16 @@ namespace RomanNumerals.Test
             result.Should().Be(romanNumeral);
         }
 
-        [Test]
-        public void GetCWhenNumberIs100()
+        [TestCase(100, "C")]
+        [TestCase(101, "CI")]
+        [TestCase(150, "CL")]
+        [TestCase(189, "CLXXXIX")]
+        [TestCase(199, "CXCIX")]
+        public void GetHoundredRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new Number(100));
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
 
-            result.Should().Be("C");
-        }
-
-        [Test]
-        public void GetCIWhenNumberIs101()
-        {
-            var result = _calculate.RomanNumber(new Number(101));
-
-            result.Should().Be("CI");
-        }
-
-        [Test]
-        public void GetCLWhenNumberIs150()
-        {
-            var result = _calculate.RomanNumber(new Number(150));
-
-            result.Should().Be("CL");
-        }
-
-        [Test]
-        public void GetCLXXXIXWhenNumberIs189()
-        {
-            var result = _calculate.RomanNumber(new Number(189));
-
-            result.Should().Be("CLXXXIX");
-        }
-
-
-        [Test]
-        public void GetCXCIXWhenNumberIs199()
-        {
-            var result = _calculate.RomanNumber(new Number(199));
-
-            result.Should().Be("CXCIX");
+            result.Should().Be(romanNumeral);
         }
     }
 }
