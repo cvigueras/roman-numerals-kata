@@ -16,4 +16,19 @@ public class ArabicNumber
                 .Select((item, index) => item.ToString().PadRight(Value.ToString().Length - index, '0')))
             .Split(",").Reverse().ToList();
     }
+
+    public bool IsSubtract()
+    {
+        return Math.Abs(Value - ClosestNumber) == 1 && ClosestNumber > Value;
+    }
+
+    public bool IsTensSubtract()
+    {
+        return Math.Abs(Value - ClosestNumber) == 10 && ClosestNumber > Value;
+    }
+
+    public bool IsClosestGreaterThanNumber()
+    {
+        return ClosestNumber > Value;
+    }
 }

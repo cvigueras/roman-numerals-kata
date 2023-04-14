@@ -44,11 +44,11 @@ public class Calculate
         if (number.Value > 30)
         {
             number.ClosestNumber = _romanNumerals.GetClosestNumber(number.Value);
-            if (IsTensSubtract(number))
+            if (number.IsTensSubtract())
             {
                 return _romanNumerals.FormatUnitsSubtract(number);
             }
-            if (IsClosestGreaterThanNumber(number))
+            if (number.IsClosestGreaterThanNumber())
             {
                 number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(number.Value);
             }
@@ -62,29 +62,14 @@ public class Calculate
     private string FormatUnitsRomanNumber(ArabicNumber number)
     {
         number.ClosestNumber = _romanNumerals.GetClosestNumber(number.Value);
-        if (IsSubtract(number))
+        if (number.IsSubtract())
         {
             return _romanNumerals.FormatUnitsSubtract(number);
         }
-        if (IsClosestGreaterThanNumber(number))
+        if (number.IsClosestGreaterThanNumber())
         {
             number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(number.Value);
         }
         return _romanNumerals.FormatUnitsSum(number);
-    }
-
-    private bool IsSubtract(ArabicNumber number)
-    {
-        return Math.Abs(number.Value - number.ClosestNumber) == 1 && number.ClosestNumber > number.Value;
-    }
-
-    private bool IsTensSubtract(ArabicNumber number)
-    {
-        return Math.Abs(number.Value - number.ClosestNumber) == 10 && number.ClosestNumber > number.Value;
-    }
-
-    private bool IsClosestGreaterThanNumber(ArabicNumber number)
-    {
-        return number.ClosestNumber > number.Value;
     }
 }
