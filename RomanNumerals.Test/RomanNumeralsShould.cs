@@ -130,5 +130,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("CI");
         }
+
+        [Test]
+        public void GetCLWhenNumberIs150()
+        {
+            var result = _calculate.RomanNumber(new Number(150));
+
+            result.Should().Be("CL");
+        }
     }
 }
