@@ -33,6 +33,11 @@ public class Calculate
             {
                 romanNumber = FormatTensRomanNumber(new Number(Convert.ToInt32(numberSplit[1])), 10) + romanNumber;
             }
+
+            if (i == 2)
+            {
+                romanNumber = FormatTensRomanNumber(new Number(Convert.ToInt32(numberSplit[2])), 100) + romanNumber;
+            }
         }
         return romanNumber;
     }
@@ -43,12 +48,12 @@ public class Calculate
         {
             return string.Empty;
         }
-        if (number.Value > 30)
+        if (number.Value > value * 3)
         {
             return FormatRomanNumber(number, value);
         }
-        var tensNumber = number.Value / 10;
-        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(10);
+        var tensNumber = number.Value / value;
+        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(value);
         return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
     }
 
