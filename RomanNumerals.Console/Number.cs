@@ -12,6 +12,7 @@ public class Number
 
     public int Value { get; }
     public int ClosestNumber { get; set; }
+    public int MaxValue { get; private set; }
 
     public List<string> NumberValueToList()
     {
@@ -40,5 +41,10 @@ public class Number
     {
         return _romanNumerals.SearchRomanNumeralValue(number.Value - number.ClosestNumber) +
                _romanNumerals.SearchRomanNumeralValue(number.ClosestNumber);
+    }
+
+    public void SetMaxValueForNumber(int i)
+    {
+        MaxValue = Convert.ToInt32("1".PadRight(i + 1, '0'));
     }
 }

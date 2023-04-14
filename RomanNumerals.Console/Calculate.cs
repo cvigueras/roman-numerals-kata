@@ -11,49 +11,30 @@ public class Calculate
 
     public string RomanNumber(Number number)
     {
-        var romanNumber = _romanNumerals.SearchRomanNumeralValue(number.Value);
-        if (!string.IsNullOrEmpty(romanNumber))
-        {
-            return romanNumber;
-        }
+        var romanNumber = string.Empty;
         var numberSplit = number.NumberValueToList();
 
         for (var i = 0; i < numberSplit.Count(); i++)
         {
-            if (i == 0)
-            {
-                if (numberSplit[i] == "0")
-                {
-                    continue;
-                }
-                romanNumber += FormatRomanNumber(new Number(Convert.ToInt32(numberSplit[0])), 1);
-            }
-
-            if (i == 1)
-            {
-                romanNumber = FormatTensRomanNumber(new Number(Convert.ToInt32(numberSplit[1])), 10) + romanNumber;
-            }
-
-            if (i == 2)
-            {
-                romanNumber = FormatTensRomanNumber(new Number(Convert.ToInt32(numberSplit[2])), 100) + romanNumber;
-            }
+            number = new Number(Convert.ToInt32(numberSplit[i]));
+            number.SetMaxValueForNumber(i);
+            romanNumber = FormatTensRomanNumber(number) + romanNumber;
         }
         return romanNumber;
     }
 
-    private string FormatTensRomanNumber(Number number, int value)
+    private string FormatTensRomanNumber(Number number)
     {
         if (number.Value == 0)
         {
             return string.Empty;
         }
-        if (number.Value > value * 3)
+        if (number.Value > number.MaxValue * 3)
         {
-            return FormatRomanNumber(number, value);
+            return FormatRomanNumber(number, number.MaxValue);
         }
-        var tensNumber = number.Value / value;
-        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(value);
+        var tensNumber = number.Value / number.MaxValue;
+        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(number.MaxValue);
         return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
     }
 
