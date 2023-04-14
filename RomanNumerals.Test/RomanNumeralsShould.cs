@@ -146,5 +146,4 @@ namespace RomanNumerals.Test
 
             result.Should().Be("CLXXXIX");
         }
-    }
 }
