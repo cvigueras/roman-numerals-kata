@@ -39,6 +39,10 @@ public class Calculate
 
     private string FormatTensRomanNumber(Number number, int value)
     {
+        if (number.Value == 0)
+        {
+            return string.Empty;
+        }
         if (number.Value > 30)
         {
             return FormatRomanNumber(number, value);

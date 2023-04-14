@@ -122,5 +122,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("C");
         }
+
+        [Test]
+        public void GetCIWhenNumberIs101()
+        {
+            var result = _calculate.RomanNumber(new Number(101));
+
+            result.Should().Be("CI");
+        }
     }
 }
