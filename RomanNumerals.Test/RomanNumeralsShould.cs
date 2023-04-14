@@ -126,5 +126,17 @@ namespace RomanNumerals.Test
 
             result.Should().Be(romanNumeral);
         }
+
+        [TestCase(200, "CC")]
+        [TestCase(201, "CCI")]
+        [TestCase(250, "CCL")]
+        [TestCase(289, "CCLXXXIX")]
+        [TestCase(299, "CCXCIX")]
+        public void GetTwoHoundredRomanNumbers(int arabicNumber, string romanNumeral)
+        {
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
+
+            result.Should().Be(romanNumeral);
+        }
     }
 }
