@@ -37,16 +37,4 @@ public class RomanNumerals
             ? x
             : y).Key;
     }
-
-    public string FormatUnitsSum(ArabicNumber number)
-    {
-        return SearchRomanNumeralValue(number.ClosestNumber) +
-               SearchRomanNumeralValue(number.Value - number.ClosestNumber);
-    }
-
-    public string FormatUnitsSubtract(ArabicNumber number)
-    {
-        return SearchRomanNumeralValue(number.Value - number.ClosestNumber) +
-               SearchRomanNumeralValue(number.ClosestNumber);
-    }
 }

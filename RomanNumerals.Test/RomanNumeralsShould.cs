@@ -24,7 +24,7 @@ namespace RomanNumerals.Test
         [TestCase(1000, "M")]
         public void GetBasicsRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
@@ -36,7 +36,7 @@ namespace RomanNumerals.Test
         [TestCase(9,"IX")]
         public void GetUnitsRomanNumbers(int arabicNumber,string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
@@ -52,7 +52,7 @@ namespace RomanNumerals.Test
         [TestCase(19,"XIX")]
         public void GetFirstTensRomanNumbers(int arabicNumber,string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
@@ -63,7 +63,7 @@ namespace RomanNumerals.Test
         [TestCase(29, "XXIX")]
         public void GetSecondTensRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
@@ -74,7 +74,7 @@ namespace RomanNumerals.Test
         [TestCase(39, "XXXIX")]
         public void GetThirdTensRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
@@ -86,7 +86,7 @@ namespace RomanNumerals.Test
         [TestCase(49, "XLIX")]
         public void GetFourthTensRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new ArabicNumber(arabicNumber));
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
 
             result.Should().Be(romanNumeral);
         }
