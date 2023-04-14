@@ -90,5 +90,17 @@ namespace RomanNumerals.Test
 
             result.Should().Be(romanNumeral);
         }
+
+        [TestCase(50, "L")]
+        [TestCase(51, "LI")]
+        [TestCase(55, "LV")]
+        [TestCase(58, "LVIII")]
+        [TestCase(59, "LIX")]
+        public void GetFifthTensRomanNumbers(int arabicNumber, string romanNumeral)
+        {
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
+
+            result.Should().Be(romanNumeral);
+        }
     }
 }
