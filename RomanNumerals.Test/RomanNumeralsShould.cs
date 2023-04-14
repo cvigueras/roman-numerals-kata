@@ -59,6 +59,7 @@ namespace RomanNumerals.Test
 
         [TestCase(20, "XX")]
         [TestCase(21, "XXI")]
+        [TestCase(28, "XXVIII")]
         [TestCase(29, "XXIX")]
         public void GetSecondTensRomanNumbers(int arabicNumber, string romanNumeral)
         {
@@ -69,6 +70,7 @@ namespace RomanNumerals.Test
 
         [TestCase(30, "XXX")]
         [TestCase(35, "XXXV")]
+        [TestCase(38, "XXXVIII")]
         [TestCase(39, "XXXIX")]
         public void GetThirdTensRomanNumbers(int arabicNumber, string romanNumeral)
         {
@@ -79,6 +81,8 @@ namespace RomanNumerals.Test
 
         [TestCase(40, "XL")]
         [TestCase(41, "XLI")]
+        [TestCase(45, "XLV")]
+        [TestCase(48, "XLVIII")]
         [TestCase(49, "XLIX")]
         public void GetFourthTensRomanNumbers(int arabicNumber, string romanNumeral)
         {
