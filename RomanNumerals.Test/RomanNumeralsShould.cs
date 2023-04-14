@@ -102,5 +102,17 @@ namespace RomanNumerals.Test
 
             result.Should().Be(romanNumeral);
         }
+
+        [TestCase(90, "XC")]
+        [TestCase(91, "XCI")]
+        [TestCase(95, "XCV")]
+        [TestCase(98, "XCVIII")]
+        [TestCase(99, "XCIX")]
+        public void GetNinthTensRomanNumbers(int arabicNumber, string romanNumeral)
+        {
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
+
+            result.Should().Be(romanNumeral);
+        }
     }
 }
