@@ -16,8 +16,11 @@ public class Calculate
 
         for (var i = 0; i < numberSplit.Count(); i++)
         {
-            number = new Number(Convert.ToInt32(numberSplit[i]));
-            number.SetMaxValueForNumber(i);
+            number = new Number(Convert.ToInt32(numberSplit[i]))
+            {
+                Position = i
+            };
+            number.SetMaxValueForNumber();
             romanNumber = FormatTensRomanNumber(number) + romanNumber;
         }
         return romanNumber;
@@ -32,7 +35,7 @@ public class Calculate
 
         if (number.Value > number.MaxValue * 3)
         {
-            return FormatRomanNumber(number, number.MaxValue);
+            return FormatRomanNumber(number);
         }
 
         var tensNumber = number.Value / number.MaxValue;
@@ -40,17 +43,17 @@ public class Calculate
         return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
     }
 
-    private string FormatRomanNumber(Number number, int value)
+    private string FormatRomanNumber(Number number)
     {
         number.ClosestNumber = _romanNumerals.GetClosestNumber(number.Value);
-        if (number.IsSubtract(value))
+        if (number.IsSubtract(number))
         {
-            return number.FormatUnitsSubtract(number);
+            return number.FormatSubtract(number);
         }
         if (number.IsClosestGreaterThanNumber())
         {
             number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(number.Value);
         }
-        return number.FormatUnitsSum(number);
+        return number.FormatSum(number);
     }
 }

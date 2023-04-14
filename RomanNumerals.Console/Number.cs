@@ -13,6 +13,7 @@ public class Number
     public int Value { get; }
     public int ClosestNumber { get; set; }
     public int MaxValue { get; private set; }
+    public int Position { get; set; }
 
     public List<string> NumberValueToList()
     {
@@ -21,9 +22,9 @@ public class Number
             .Split(",").Reverse().ToList();
     }
 
-    public bool IsSubtract(int value)
+    public bool IsSubtract(Number number)
     {
-        return Math.Abs(Value - ClosestNumber) == value && ClosestNumber > Value;
+        return Math.Abs(Value - ClosestNumber) == number.MaxValue && ClosestNumber > Value;
     }
 
     public bool IsClosestGreaterThanNumber()
@@ -31,7 +32,7 @@ public class Number
         return ClosestNumber > Value;
     }
 
-    public string FormatUnitsSum(Number number)
+    public string FormatSum(Number number)
     {
         var unitNumber = (number.Value - number.ClosestNumber) / 3;
         var result = _romanNumerals.SearchRomanNumeralValue(unitNumber);
@@ -45,14 +46,14 @@ public class Number
                _romanNumerals.SearchRomanNumeralValue(number.Value - number.ClosestNumber);
     }
 
-    public string FormatUnitsSubtract(Number number)
+    public string FormatSubtract(Number number)
     {
         return _romanNumerals.SearchRomanNumeralValue(number.Value - number.ClosestNumber) +
                _romanNumerals.SearchRomanNumeralValue(number.ClosestNumber);
     }
 
-    public void SetMaxValueForNumber(int i)
+    public void SetMaxValueForNumber()
     {
-        MaxValue = Convert.ToInt32("1".PadRight(i + 1, '0'));
+        MaxValue = Convert.ToInt32("1".PadRight(Position + 1, '0'));
     }
 }
