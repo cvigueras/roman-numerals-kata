@@ -114,5 +114,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be(romanNumeral);
         }
+
+        [Test]
+        public void GetCWhenNumberIs100()
+        {
+            var result = _calculate.RomanNumber(new Number(100));
+
+            result.Should().Be("C");
+        }
     }
 }
