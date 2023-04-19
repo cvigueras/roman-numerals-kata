@@ -162,5 +162,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be(romanNumeral);
         }
+
+        [Test]
+        public void GetOneThousandOneHundredRomanNumbers()
+        {
+            var result = _calculate.RomanNumber(new Number(1100));
+
+            result.Should().Be("MC");
+        }
     }
 }
