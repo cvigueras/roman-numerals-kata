@@ -138,5 +138,17 @@ namespace RomanNumerals.Test
 
             result.Should().Be(romanNumeral);
         }
+
+        [TestCase(700, "DCC")]
+        [TestCase(701, "DCCI")]
+        [TestCase(750, "DCCL")]
+        [TestCase(789, "DCCLXXXIX")]
+        [TestCase(799, "DCCXCIX")]
+        public void GetSevenHoundredRomanNumbers(int arabicNumber, string romanNumeral)
+        {
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
+
+            result.Should().Be(romanNumeral);
+        }
     }
 }

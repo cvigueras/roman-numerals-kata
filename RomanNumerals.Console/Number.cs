@@ -22,9 +22,9 @@ public class Number
             .Split(",").Reverse().ToList();
     }
 
-    public bool IsSubtract(Number number)
+    public bool IsSubtract()
     {
-        return Math.Abs(Value - ClosestNumber) == number.MaxValue && ClosestNumber > Value;
+        return Math.Abs(Value - ClosestNumber) == MaxValue && ClosestNumber > Value;
     }
 
     public bool IsClosestGreaterThanNumber()
@@ -32,24 +32,35 @@ public class Number
         return ClosestNumber > Value;
     }
 
-    public string FormatSum(Number number)
+    private int TakeFirstDigit()
     {
-        var unitNumber = (number.Value - number.ClosestNumber) / 3;
+        var total = Math.Abs(Value - ClosestNumber);
+        if (total == 0)
+            return 1;
+        if ((int)Math.Floor(Math.Log10(total) + 1) >= 1)
+            return (int)Math.Truncate((total / Math.Pow(10, (int)Math.Floor(Math.Log10(total) + 1) - 1)));
+        return total;
+    }
+
+    public string FormatSum()
+    {
+        var firstDigit = TakeFirstDigit();
+        var unitNumber = (Value - ClosestNumber) / firstDigit;
         var result = _romanNumerals.SearchRomanNumeralValue(unitNumber);
         if (!string.IsNullOrEmpty(result))
         {
-            return _romanNumerals.SearchRomanNumeralValue(number.ClosestNumber) +
-                   result.PadLeft(3, Convert.ToChar(result));
+            return _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
+                   result.PadLeft(firstDigit, Convert.ToChar(result));
         }
 
-        return _romanNumerals.SearchRomanNumeralValue(number.ClosestNumber) +
-               _romanNumerals.SearchRomanNumeralValue(number.Value - number.ClosestNumber);
+        return _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
+               _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber);
     }
 
-    public string FormatSubtract(Number number)
+    public string FormatSubtract()
     {
-        return _romanNumerals.SearchRomanNumeralValue(number.Value - number.ClosestNumber) +
-               _romanNumerals.SearchRomanNumeralValue(number.ClosestNumber);
+        return _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber) +
+               _romanNumerals.SearchRomanNumeralValue(ClosestNumber);
     }
 
     public void SetMaxValueForNumber()

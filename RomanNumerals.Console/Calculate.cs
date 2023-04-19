@@ -46,14 +46,14 @@ public class Calculate
     private string FormatRomanNumber(Number number)
     {
         number.ClosestNumber = _romanNumerals.GetClosestNumber(number.Value);
-        if (number.IsSubtract(number))
+        if (number.IsSubtract())
         {
-            return number.FormatSubtract(number);
+            return number.FormatSubtract();
         }
         if (number.IsClosestGreaterThanNumber())
         {
             number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(number.Value);
         }
-        return number.FormatSum(number);
+        return number.FormatSum();
     }
 }
