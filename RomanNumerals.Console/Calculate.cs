@@ -33,14 +33,14 @@ public class Calculate
             return string.Empty;
         }
 
-        if (number.Value > number.MaxValue * 3)
+        if (number.Value <= number.MaxValue * 3)
         {
-            return FormatRomanNumber(number);
+            var tensNumber = number.Value / number.MaxValue;
+            var romanNumeral = _romanNumerals.SearchRomanNumeralValue(number.MaxValue);
+            return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
         }
 
-        var tensNumber = number.Value / number.MaxValue;
-        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(number.MaxValue);
-        return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
+        return FormatRomanNumber(number);
     }
 
     private string FormatRomanNumber(Number number)
@@ -50,7 +50,7 @@ public class Calculate
         {
             return number.FormatSubtract();
         }
-        if (number.IsClosestGreaterThanNumber())
+        if (number.ClosestNumber > number.Value)
         {
             number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(number.Value);
         }

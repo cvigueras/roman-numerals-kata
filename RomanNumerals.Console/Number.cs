@@ -27,11 +27,6 @@ public class Number
         return Math.Abs(Value - ClosestNumber) == MaxValue && ClosestNumber > Value;
     }
 
-    public bool IsClosestGreaterThanNumber()
-    {
-        return ClosestNumber > Value;
-    }
-
     private int TakeFirstDigit()
     {
         var total = Math.Abs(Value - ClosestNumber);
