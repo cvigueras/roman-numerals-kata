@@ -120,7 +120,7 @@ namespace RomanNumerals.Test
         [TestCase(150, "CL")]
         [TestCase(189, "CLXXXIX")]
         [TestCase(199, "CXCIX")]
-        public void GetHoundredRomanNumbers(int arabicNumber, string romanNumeral)
+        public void GetHundredRomanNumbers(int arabicNumber, string romanNumeral)
         {
             var result = _calculate.RomanNumber(new Number(arabicNumber));
 
@@ -132,7 +132,7 @@ namespace RomanNumerals.Test
         [TestCase(250, "CCL")]
         [TestCase(289, "CCLXXXIX")]
         [TestCase(299, "CCXCIX")]
-        public void GetTwoHoundredRomanNumbers(int arabicNumber, string romanNumeral)
+        public void GetTwoHundredRomanNumbers(int arabicNumber, string romanNumeral)
         {
             var result = _calculate.RomanNumber(new Number(arabicNumber));
 
@@ -144,7 +144,19 @@ namespace RomanNumerals.Test
         [TestCase(750, "DCCL")]
         [TestCase(789, "DCCLXXXIX")]
         [TestCase(799, "DCCXCIX")]
-        public void GetSevenHoundredRomanNumbers(int arabicNumber, string romanNumeral)
+        public void GetSevenHundredRomanNumbers(int arabicNumber, string romanNumeral)
+        {
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
+
+            result.Should().Be(romanNumeral);
+        }
+
+        [TestCase(900, "CM")]
+        [TestCase(901, "CMI")]
+        [TestCase(950, "CML")]
+        [TestCase(989, "CMLXXXIX")]
+        [TestCase(999, "CMXCIX")]
+        public void GetNineHundredRomanNumbers(int arabicNumber, string romanNumeral)
         {
             var result = _calculate.RomanNumber(new Number(arabicNumber));
 
