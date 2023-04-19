@@ -170,5 +170,13 @@ namespace RomanNumerals.Test
 
             result.Should().Be("MC");
         }
+
+        [Test]
+        public void GetMaxRomanNumeral()
+        {
+            var result = _calculate.RomanNumber(new Number(3999));
+
+            result.Should().Be("MMMCMXCIX");
+        }
     }
 }
