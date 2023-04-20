@@ -2,12 +2,9 @@ namespace RomanNumerals.Console;
 
 public class Number
 {
-    private readonly RomanNumerals _romanNumerals;
-
     public Number(int value)
     {
         Value = value;
-        _romanNumerals = new RomanNumerals();
     }
 
     public int Value { get; }
@@ -27,7 +24,7 @@ public class Number
         return Math.Abs(Value - ClosestNumber) == MaxValue && ClosestNumber > Value;
     }
 
-    private int TakeFirstDigit()
+    public int TakeFirstDigit()
     {
         var total = Math.Abs(Value - ClosestNumber);
         if (total == 0)
@@ -35,33 +32,6 @@ public class Number
         if ((int)Math.Floor(Math.Log10(total) + 1) >= 1)
             return (int)Math.Truncate((total / Math.Pow(10, (int)Math.Floor(Math.Log10(total) + 1) - 1)));
         return total;
-    }
-
-    public string FormatTensSum()
-    {
-        var result = GetMinimumDivisor();
-        return !string.IsNullOrEmpty(result)
-            ? _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
-              result.PadLeft(TakeFirstDigit(), Convert.ToChar(result))
-            : string.Empty;
-    }
-
-    private string GetMinimumDivisor()
-    {
-        var unitNumber = (Value - ClosestNumber) / TakeFirstDigit();
-        return _romanNumerals.SearchRomanNumeralValue(unitNumber);
-    }
-
-    public string FormatSubtract()
-    {
-        return _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber) +
-               _romanNumerals.SearchRomanNumeralValue(ClosestNumber);
-    }
-
-    public string FormatUnitSum()
-    {
-        return _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
-               _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber);
     }
 
     public void SetMaxValueForNumber()

@@ -19,33 +19,59 @@ public class Calculate
         {
             _number = new Number(Convert.ToInt32(numberSplit[i])) { Position = i };
             _number.SetMaxValueForNumber();
-            romanNumber = FormatTensRomanNumber() + romanNumber;
+            romanNumber = FormatRomanNumber() + romanNumber;
         }
         return romanNumber;
     }
 
-    private string FormatTensRomanNumber()
-    {
-        if (_number.Value == 0) return string.Empty;
-        if (_number.Value > _number.MaxValue * 3) return FormatRomanNumber();
-        var tensNumber = _number.Value / _number.MaxValue;
-        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(_number.MaxValue);
-        return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
-    }
-
     private string FormatRomanNumber()
     {
+        if (_number.Value == 0) return string.Empty;
+        if (_number.Value > _number.MaxValue * 3) return FormatTensRomanNumber();
+        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(_number.MaxValue);
+        return romanNumeral.PadLeft(_number.Value / _number.MaxValue, Convert.ToChar(romanNumeral));
+    }
+
+    private string FormatTensRomanNumber()
+    {
         _number.ClosestNumber = _romanNumerals.GetClosestNumber(_number.Value);
-        if (_number.IsSubtract()) return _number.FormatSubtract();
+        if (_number.IsSubtract()) return FormatSubtract();
             if (_number.ClosestNumber <= _number.Value) return FormatSum();
         _number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(_number.Value);
         return FormatSum();
     }
 
-    public string FormatSum()
+    private string FormatSum()
     {
-        return !string.IsNullOrEmpty(_number.FormatTensSum())
-            ? _number.FormatTensSum()
-            : _number.FormatUnitSum();
+        return !string.IsNullOrEmpty(FormatTensSum())
+            ? FormatTensSum()
+            : FormatUnitSum();
+    }
+
+    private string FormatTensSum()
+    {
+        var result = GetMinimumDivisorInRoman();
+        return !string.IsNullOrEmpty(result)
+            ? _romanNumerals.SearchRomanNumeralValue(_number.ClosestNumber) +
+              result.PadLeft(_number.TakeFirstDigit(), Convert.ToChar(result))
+            : string.Empty;
+    }
+
+    private string GetMinimumDivisorInRoman()
+    {
+        var unitNumber = (_number.Value - _number.ClosestNumber) / _number.TakeFirstDigit();
+        return _romanNumerals.SearchRomanNumeralValue(unitNumber);
+    }
+
+    private string FormatSubtract()
+    {
+        return _romanNumerals.SearchRomanNumeralValue(_number.Value - _number.ClosestNumber) +
+               _romanNumerals.SearchRomanNumeralValue(_number.ClosestNumber);
+    }
+
+    public string FormatUnitSum()
+    {
+        return _romanNumerals.SearchRomanNumeralValue(_number.ClosestNumber) +
+               _romanNumerals.SearchRomanNumeralValue(_number.Value - _number.ClosestNumber);
     }
 }
