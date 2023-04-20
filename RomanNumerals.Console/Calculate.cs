@@ -37,8 +37,15 @@ public class Calculate
     {
         _number.ClosestNumber = _romanNumerals.GetClosestNumber(_number.Value);
         if (_number.IsSubtract()) return _number.FormatSubtract();
-            if (_number.ClosestNumber <= _number.Value) return _number.FormatSum();
+            if (_number.ClosestNumber <= _number.Value) return FormatSum();
         _number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(_number.Value);
-        return _number.FormatSum();
+        return FormatSum();
+    }
+
+    public string FormatSum()
+    {
+        return !string.IsNullOrEmpty(_number.FormatTensSum())
+            ? _number.FormatTensSum()
+            : _number.FormatUnitSum();
     }
 }

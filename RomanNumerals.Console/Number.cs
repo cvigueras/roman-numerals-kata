@@ -37,33 +37,31 @@ public class Number
         return total;
     }
 
-    public string FormatSum()
+    public string FormatTensSum()
     {
-        return !string.IsNullOrEmpty(FormatTensSum())
-            ? FormatTensSum()
-            : _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
-              _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber);
-
+        var result = GetMinimumDivisor();
+        return !string.IsNullOrEmpty(result)
+            ? _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
+              result.PadLeft(TakeFirstDigit(), Convert.ToChar(result))
+            : string.Empty;
     }
 
-    private string FormatTensSum()
+    private string GetMinimumDivisor()
     {
-        var firstDigit = TakeFirstDigit();
-        var unitNumber = (Value - ClosestNumber) / firstDigit;
-        var result = _romanNumerals.SearchRomanNumeralValue(unitNumber);
-        if (!string.IsNullOrEmpty(result))
-        {
-            return _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
-                   result.PadLeft(firstDigit, Convert.ToChar(result));
-        }
-
-        return string.Empty;
+        var unitNumber = (Value - ClosestNumber) / TakeFirstDigit();
+        return _romanNumerals.SearchRomanNumeralValue(unitNumber);
     }
 
     public string FormatSubtract()
     {
         return _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber) +
                _romanNumerals.SearchRomanNumeralValue(ClosestNumber);
+    }
+
+    public string FormatUnitSum()
+    {
+        return _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
+               _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber);
     }
 
     public void SetMaxValueForNumber()
