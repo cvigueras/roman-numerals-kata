@@ -39,6 +39,15 @@ public class Number
 
     public string FormatSum()
     {
+        return !string.IsNullOrEmpty(FormatTensSum())
+            ? FormatTensSum()
+            : _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
+              _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber);
+
+    }
+
+    private string FormatTensSum()
+    {
         var firstDigit = TakeFirstDigit();
         var unitNumber = (Value - ClosestNumber) / firstDigit;
         var result = _romanNumerals.SearchRomanNumeralValue(unitNumber);
@@ -48,8 +57,7 @@ public class Number
                    result.PadLeft(firstDigit, Convert.ToChar(result));
         }
 
-        return _romanNumerals.SearchRomanNumeralValue(ClosestNumber) +
-               _romanNumerals.SearchRomanNumeralValue(Value - ClosestNumber);
+        return string.Empty;
     }
 
     public string FormatSubtract()
