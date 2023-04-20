@@ -3,6 +3,7 @@ namespace RomanNumerals.Console;
 public class Calculate
 {
     private readonly RomanNumerals _romanNumerals;
+    private Number _number;
 
     public Calculate()
     {
@@ -11,49 +12,33 @@ public class Calculate
 
     public string RomanNumber(Number number)
     {
+        _number = number;
         var romanNumber = string.Empty;
-        var numberSplit = number.NumberValueToList();
-
+        var numberSplit = _number.NumberValueToList();
         for (var i = 0; i < numberSplit.Count(); i++)
         {
-            number = new Number(Convert.ToInt32(numberSplit[i]))
-            {
-                Position = i
-            };
-            number.SetMaxValueForNumber();
-            romanNumber = FormatTensRomanNumber(number) + romanNumber;
+            _number = new Number(Convert.ToInt32(numberSplit[i])) { Position = i };
+            _number.SetMaxValueForNumber();
+            romanNumber = FormatTensRomanNumber() + romanNumber;
         }
         return romanNumber;
     }
 
-    private string FormatTensRomanNumber(Number number)
+    private string FormatTensRomanNumber()
     {
-        if (number.Value == 0)
-        {
-            return string.Empty;
-        }
-
-        if (number.Value <= number.MaxValue * 3)
-        {
-            var tensNumber = number.Value / number.MaxValue;
-            var romanNumeral = _romanNumerals.SearchRomanNumeralValue(number.MaxValue);
-            return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
-        }
-
-        return FormatRomanNumber(number);
+        if (_number.Value == 0) return string.Empty;
+        if (_number.Value > _number.MaxValue * 3) return FormatRomanNumber();
+        var tensNumber = _number.Value / _number.MaxValue;
+        var romanNumeral = _romanNumerals.SearchRomanNumeralValue(_number.MaxValue);
+        return romanNumeral.PadLeft(tensNumber, Convert.ToChar(romanNumeral));
     }
 
-    private string FormatRomanNumber(Number number)
+    private string FormatRomanNumber()
     {
-        number.ClosestNumber = _romanNumerals.GetClosestNumber(number.Value);
-        if (number.IsSubtract())
-        {
-            return number.FormatSubtract();
-        }
-        if (number.ClosestNumber > number.Value)
-        {
-            number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(number.Value);
-        }
-        return number.FormatSum();
+        _number.ClosestNumber = _romanNumerals.GetClosestNumber(_number.Value);
+        if (_number.IsSubtract()) return _number.FormatSubtract();
+            if (_number.ClosestNumber <= _number.Value) return _number.FormatSum();
+        _number.ClosestNumber = _romanNumerals.GetPreviousClosestNumber(_number.Value);
+        return _number.FormatSum();
     }
 }
