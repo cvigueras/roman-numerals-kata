@@ -163,12 +163,17 @@ namespace RomanNumerals.Test
             result.Should().Be(romanNumeral);
         }
 
-        [Test]
-        public void GetOneThousandOneHundredRomanNumbers()
+        [TestCase(1000, "M")]
+        [TestCase(1001, "MI")]
+        [TestCase(1050, "ML")]
+        [TestCase(1089, "MLXXXIX")]
+        [TestCase(1100, "MC")]
+        [TestCase(1199, "MCXCIX")]
+        public void GetOneThousandRomanNumbers(int arabicNumber, string romanNumeral)
         {
-            var result = _calculate.RomanNumber(new Number(1100));
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
 
-            result.Should().Be("MC");
+            result.Should().Be(romanNumeral);
         }
 
         [Test]
