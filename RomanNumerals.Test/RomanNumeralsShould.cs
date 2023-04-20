@@ -176,6 +176,19 @@ namespace RomanNumerals.Test
             result.Should().Be(romanNumeral);
         }
 
+        [TestCase(2000, "MM")]
+        [TestCase(2001, "MMI")]
+        [TestCase(2050, "MML")]
+        [TestCase(2089, "MMLXXXIX")]
+        [TestCase(2100, "MMC")]
+        [TestCase(2199, "MMCXCIX")]
+        public void GetTwoThousandRomanNumbers(int arabicNumber, string romanNumeral)
+        {
+            var result = _calculate.RomanNumber(new Number(arabicNumber));
+
+            result.Should().Be(romanNumeral);
+        }
+
         [Test]
         public void GetMaxRomanNumeral()
         {
