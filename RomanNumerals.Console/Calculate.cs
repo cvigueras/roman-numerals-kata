@@ -5,14 +5,14 @@ public class Calculate
     private readonly RomanNumerals _romanNumerals;
     private Number _number;
 
-    public Calculate()
+    public Calculate(Number number)
     {
         _romanNumerals = new RomanNumerals();
+        _number = number;
     }
 
-    public string RomanNumber(Number number)
+    public string RomanNumber()
     {
-        _number = number;
         var romanNumber = string.Empty;
         var numberSplit = _number.NumberValueToList();
         for (var i = 0; i < numberSplit.Count(); i++)
